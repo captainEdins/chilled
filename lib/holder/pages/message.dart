@@ -68,9 +68,9 @@ class _MessageState extends State<Message> {
                       height: 1,),
                     communityBox(
                       img: 'https://images.pexels.com/photos/6129203/pexels-photo-6129203.jpeg?auto=compress&cs=tinysrgb&w=600',
-                      doctorName: 'Dr.Malombe Kilo',
-                      doctorTitle: 'Bones Specialist',
-                      phoneNumber: "07654236542"
+                      doctorName: 'Dr. David Kagwi Wairoto',
+                      doctorTitle: 'Consultant Psychiatrist',
+                      phoneNumber: "+254769398128"
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 20,bottom: 10),
@@ -78,9 +78,20 @@ class _MessageState extends State<Message> {
                       height: 1,),
                     communityBox(
                         img: 'https://images.pexels.com/photos/3825457/pexels-photo-3825457.jpeg?auto=compress&cs=tinysrgb&w=600',
-                        doctorName: 'Dr.Muhammed Syahid',
-                        doctorTitle: 'Dental Specialist',
-                        phoneNumber: "075752136542"
+                        doctorName: 'Dr. Lina Akello',
+                        doctorTitle: 'Consultant Psychiatrist',
+                        phoneNumber: "+25471029290"
+                    ),
+
+                    Container(
+                      margin: const EdgeInsets.only(top: 20,bottom: 10),
+                      color: ColorList.primary.withOpacity(.1),
+                      height: 1,),
+                    communityBox(
+                        img: 'https://images.pexels.com/photos/7579319/pexels-photo-7579319.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                        doctorName: 'Dr. Linda N. Nyamute',
+                        doctorTitle: 'Consultant Psychiatrist',
+                        phoneNumber: "0737879077"
                     )
                   ],
                 ),
@@ -102,7 +113,7 @@ class _MessageState extends State<Message> {
           screen: Inbox(
               name: "Chilled",
               receiverId: Strings.userGPT,
-              status: "I may know your problem",
+              status: "May i know your problem",
               senderId: phone,
               receiverCode: "gpt"),
           withNavBar: false, // OPTIONAL VALUE. True by default.
@@ -154,7 +165,7 @@ class _MessageState extends State<Message> {
                             textAlign: TextAlign.left,
                           ),
                           const Text(
-                            "I may know your problem",
+                            "May i get to know your problem",
                             style: TextStyle(
                               fontSize: 8,
                               fontWeight: FontWeight.w500,

@@ -1,7 +1,11 @@
+import 'package:chilled/holder/pages/home_page.dart';
 import 'package:chilled/holder/pages/message.dart';
+import 'package:chilled/holder/pages/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:chilled/resources/color.dart';
+
+import 'pages/profile_page.dart';
 
 class MainHolder extends StatefulWidget {
   const MainHolder({Key? key}) : super(key: key);
@@ -79,10 +83,11 @@ class _MainHolderState extends State<MainHolder> {
 
   List<Widget> _buildScreens() {
     return [
-      containerHere("home"),
+      const HomePage(),
       const Message(),
-      containerHere("therapist"),
-      containerHere("profile"),
+      const SettingsPage(),
+      const ProfilePage(),
+      
     ];
   }
 
