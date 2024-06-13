@@ -11,7 +11,7 @@ class EmotionFace extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: ColorList.white,
+        color: ColorList.secondary,
         borderRadius: BorderRadius.circular(12),
       ),
       padding: EdgeInsets.all(16),

@@ -16,15 +16,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // variable to store username
-  String username = "";
+  String fullName = "";
 
-  // navigate to profilePage
   void goToProfilePage() {
-    // pop menu drawer
     Navigator.pop(context);
-
-    // go to profile page
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -36,29 +31,26 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    // Get username on initState
-    getUsername();
+    getFullName();
   }
 
-  Future<void> getUsername() async {
+  Future<void> getFullName() async {
     final auth = FirebaseAuth.instance;
     final user = auth.currentUser;
 
     if (user != null) {
-      // Get a reference to the user's document in Firestore
       final docRef = FirebaseFirestore.instance.collection('users').doc(user.uid);
       final snapshot = await docRef.get();
 
       if (snapshot.exists) {
         final userData = snapshot.data() as Map<String, dynamic>;
         setState(() {
-          username = userData['username'] ?? ""; // Handle null username
+          fullName = userData['full_name'] ?? "";
         });
       }
     }
   }
 
-  // Method to format date (assuming you want YYYY-MM-DD format)
   String formatDate(DateTime date) {
     final year = date.year;
     final month = date.month.toString().padLeft(2, '0');
@@ -75,14 +67,27 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Welcome to chilled"), // Set a title for your app
-        backgroundColor: ColorList.primary, // Set the AppBar background color
+        title: Text(
+          "Welcome to chilled",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 20 ),
+        ),
+        iconTheme: IconThemeData(color: ColorList.secondary), // Set icon color to white
+        backgroundColor: ColorList.black,
       ),
-      drawer: MyDrawer(
-        onProfileTap: goToProfilePage,
-        // onSignOut: signOut,
+      drawer: Theme(
+        data: Theme.of(context).copyWith(
+          canvasColor: Colors.white, // Set drawer background color to white
+          // Adjust text color to ensure readability on white background
+          primaryColor: Colors.black, // Change text color to black
+        ),
+        child: Material(
+          elevation: 16, // Add elevation to the drawer
+          child: MyDrawer(
+            onProfileTap: goToProfilePage,
+          ),
+        ),
       ),
-      backgroundColor: ColorList.primary,
+      backgroundColor: ColorList.black,
       body: SafeArea(
         child: Column(
           children: [
@@ -91,34 +96,30 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   Row(
-                    // spacing for the text and icon
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // Text for Appbar
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Hi $username!", // Use username variable
+                            "Hi $fullName!",
                             style: TextStyle(
-                              color: ColorList.lightGreyBest,
-                              fontSize: 24,
+                              color: ColorList.white,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           SizedBox(height: 8),
                           Text(
-                            formatDate(DateTime.now()), // Call formatDate method
-                            style: TextStyle(color: ColorList.lightGreyBest),
+                            formatDate(DateTime.now()),
+                            style: TextStyle(color: ColorList.white),
                           ),
                         ],
                       ),
                       SizedBox(
                         height: notch == 10 ? 38 : 70,
                         child: InkWell(
-                          onTap: () {
-                            // Handle icon click
-                          },
+                          onTap: () {},
                           child: Container(
                             decoration: BoxDecoration(
                               color: ColorList.white,
@@ -132,68 +133,57 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                   SizedBox(height: 25),
-                 
-                  // search bar
                   InkWell(
-                    onTap: () {
-                      // Handle search bar click
-                    },
+                    onTap: () {},
                     borderRadius: BorderRadius.circular(12),
                     child: Container(
                       padding: EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: ColorList.lightGreyBest,
+                        color: ColorList.white,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Row(
                         children: [
                           Icon(Icons.search),
+                          SizedBox(width: 8),
                           Text(
                             'Search',
-                            style: TextStyle(color: ColorList.white),
+                            style: TextStyle(color: ColorList.black),
                           ),
                         ],
                       ),
                     ),
                   ),
-
                   SizedBox(height: 25),
-                  // how do you feel
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         "How do you feel",
                         style: TextStyle(
-                          color: ColorList.lightGreyBest,
+                          color: ColorList.white,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Icon(Icons.more_horiz_outlined,
-                          color: ColorList.lightGreyBest),
+                          color: ColorList.white),
                     ],
                   ),
                   SizedBox(height: 25),
-                  // Four different Faces
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      // runes for the faces
-                      // bad
                       Column(
                         children: [
                           EmotionFace(
-                            emojiconFace: '😂',
+                            emojiconFace:'😥',
                           ),
                           SizedBox(height: 8),
                           Text('Bad',
-                              style: TextStyle(color: ColorList.lightGreyBest)),
+                              style: TextStyle(color: ColorList.white)),
                         ],
                       ),
-
-                      //fine
-
                       Column(
                         children: [
                           EmotionFace(
@@ -201,22 +191,19 @@ class _HomePageState extends State<HomePage> {
                           ),
                           SizedBox(height: 8),
                           Text('Fine',
-                              style: TextStyle(color: ColorList.lightGreyBest)),
+                              style: TextStyle(color: ColorList.white)),
                         ],
                       ),
-
-                      // well
                       Column(
                         children: [
                           EmotionFace(
-                            emojiconFace: '☺',
+                            emojiconFace: '😊',
                           ),
                           SizedBox(height: 8),
                           Text('Well',
-                              style: TextStyle(color: ColorList.lightGreyBest)),
+                              style: TextStyle(color: ColorList.white)),
                         ],
                       ),
-
                       Column(
                         children: [
                           EmotionFace(
@@ -226,25 +213,21 @@ class _HomePageState extends State<HomePage> {
                           Text(
                             'Excellent ',
                             style: TextStyle(
-                              color: ColorList.lightGreyBest,
+                              color: ColorList.white,
                             ),
                           ),
                         ],
                       ),
-
-                      // excellent
                     ],
                   ),
                 ],
               ),
             ),
             SizedBox(height: 25),
-            // Base Container
-            
-             Expanded(
+            Expanded(
               child: Container(
                 padding: EdgeInsets.all(25),
-                color: ColorList.primary,
+                color: ColorList.white,
                 child: Column(
                   children: [
                     Row(
@@ -257,14 +240,11 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                     SizedBox(height: 8),
-                    // LISTVIEW OF EXERCISES
                     Expanded(
                       child: ListView(
                         children: [
                           InkWell(
-                            onTap: () {
-                              // Handle exercise tile click
-                            },
+                            onTap: () {},
                             child: ExerciseTile(
                               icon: Icons.favorite,
                               exerciseName: 'Speaking Skills',
@@ -273,9 +253,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           InkWell(
-                            onTap: () {
-                              // Handle exercise tile click
-                            },
+                            onTap: () {},
                             child: ExerciseTile(
                               icon: Icons.person,
                               exerciseName: 'Reading Skills',
@@ -285,20 +263,18 @@ class _HomePageState extends State<HomePage> {
                           ),
                           InkWell(
                             onTap: () {
-                              // Handle exercise tile click
                               Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => Message(), // Replace with your desired page
-  ),
-);
-                              
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomePage(),
+                                ),
+                              );
                             },
                             child: ExerciseTile(
                               icon: Icons.star,
                               exerciseName: 'Writing Skills',
                               numberOfExercises: 16,
-                              color: Colors.purple,
+                              color: Colors.pink,
                             ),
                           ),
                         ],

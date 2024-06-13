@@ -1,6 +1,6 @@
 import 'package:chilled/holder/pages/home_page.dart';
 import 'package:chilled/holder/pages/message.dart';
-import 'package:chilled/holder/pages/setting_page.dart';
+import 'package:chilled/holder/pages/physiatrict.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:chilled/resources/color.dart';
@@ -85,7 +85,7 @@ class _MainHolderState extends State<MainHolder> {
     return [
       const HomePage(),
       const Message(),
-      const SettingsPage(),
+      const Physiatrict(),
       const ProfilePage(),
       
     ];

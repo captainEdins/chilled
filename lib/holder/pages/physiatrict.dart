@@ -2,16 +2,24 @@ import 'package:flutter/material.dart';
 
 import '../../resources/color.dart';
 
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({Key? key});
+class Physiatrict extends StatelessWidget {
+  const Physiatrict({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+
       child: Scaffold(
+        appBar: AppBar(
+        title: Center(
+         
+          child: Text(
+            "Physiatrists",style: TextStyle(color: ColorList.primary),),
+        ),
+        ),
         backgroundColor: ColorList.white,
         body: Padding(
-          padding: const EdgeInsets.all(20.0), // Adjust spacing as needed
+          padding: const EdgeInsets.all(20.0),
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
