@@ -1,5 +1,5 @@
-## Mental App
-Mental App is a comprehensive Flutter application designed to promote mental well-being through a range of exercises, mindfulness activities, an AI-powered chat assistant, and access to mental health professionals. It provides a user-friendly interface to help individuals track their mood, engage in skill-building exercises, and cultivate a healthier mindset.
+## Chilled
+Chilled is a comprehensive Flutter application designed to promote mental well-being through a range of exercises, mindfulness activities, an AI-powered chat assistant, and access to mental health professionals. It provides a user-friendly interface to help individuals track their mood, engage in skill-building exercises, and cultivate a healthier mindset.
 
 ## Features
 
