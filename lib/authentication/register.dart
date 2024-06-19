@@ -1,4 +1,6 @@
 import 'package:chilled/authentication/backend/authServices.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -358,6 +360,13 @@ class _RegisterState extends State<Register> {
 
         if (email.isNotEmpty && name.isNotEmpty && password.isNotEmpty && phone.isNotEmpty) {
           createUser();
+
+          // create a document in firestore called users
+
+          // FirebaseFirestore.instance.collection("Users").doc(userCredential.user!.email).set({
+          //   'username': emailTextController.text
+          // });
+
         } else {
           Fluttertoast.showToast(
               msg: "please do not leave any blanks",
